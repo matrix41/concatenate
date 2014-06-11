@@ -25,8 +25,16 @@ while ( my $line = <$fh> ) {
 #Step 3 of 4: Get rid of all the white spaces in the data value
 	$value =~ s/\s*$//g;
 #Step 4 of 4: Print to screen
-	print "|", $parameter, $value;
-
+    if ( $parameter !~ /format$/ )
+    {
+        if ( $parameter !~ /str$/ )
+        {
+      	    if ( $parameter !~ /def$/)
+      	    {
+	            print "|", $parameter, $value;
+      	    }
+        }
+    }
 #Keep track of the count
     $count = $.	
 }
