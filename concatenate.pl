@@ -5,17 +5,23 @@ use warnings;
 use feature qw(switch say); # need this for GIVEN-WHEN block
 
 #Define: 
-my $count;
+my $count = 0;
 my $parameter;
 my $value;
 
 
-print "Enter filename --> ";
-my $inputfile = <STDIN>;
+# print "Enter filename --> ";
+# my $inputfile = <STDIN>;
+# chomp $inputfile;
+
+#Get filename from command line argument
+my $inputfile = $ARGV[0];
 chomp $inputfile;
 
 
+#Declare new filehandle and associated it with filename
 open (my $fh, '<', $inputfile) or die "\nCould not open file '$inputfile' $!\n";
+
 
 while ( my $line = <$fh> ) {
 #Step 1 of 4: Split the line on the pipe character.
@@ -24,7 +30,8 @@ while ( my $line = <$fh> ) {
 	$parameter =~ s/\s*$//g;
 #Step 3 of 4: Get rid of all the white spaces in the data value
 	$value =~ s/\s*$//g;
-#Step 4 of 4: Print to screen
+#Step 4 of 4: Prints only those parameter names that do not end 
+# with 'format', 'str', or 'def'
     if ( $parameter !~ /format$/ )
     {
         if ( $parameter !~ /str$/ )
@@ -32,14 +39,13 @@ while ( my $line = <$fh> ) {
       	    if ( $parameter !~ /def$/)
       	    {
 	            print "|", $parameter, $value;
+      	        $count = $count + 1;
       	    }
         }
     }
-#Keep track of the count
-    $count = $.	
 }
 
 
-print "\nLine count is $count\n";
+# print "\nLine count is $count\n";
+print "\n";
 close $fh;
-
