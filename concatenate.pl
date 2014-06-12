@@ -8,6 +8,7 @@ use feature qw(switch say); # need this for GIVEN-WHEN block
 my $count = 0;
 my $parameter;
 my $value;
+my $superstring;
 
 
 # print "Enter filename --> ";
@@ -39,13 +40,23 @@ while ( my $line = <$fh> ) {
       	    if ( $parameter !~ /def$/)
       	    {
 	            print "|", $parameter, $value;
+	            $superstring .= "|";
+	            $superstring .= "$parameter";
+	            $superstring .= "$value";
       	        $count = $count + 1;
       	    }
         }
     }
 }
+# Close file when done 
+print "\n";
+close $fh;
 
 
 # print "\nLine count is $count\n";
-print "\n";
-close $fh;
+$superstring .= "\n";
+
+#Declare new filehandle and overwrite filename with content in $superstring
+open (my $oh, '>', $inputfile) or die "\nCould not open file '$inputfile' $!\n";
+print $oh "$superstring";
+close $oh;
