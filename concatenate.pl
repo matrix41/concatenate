@@ -24,6 +24,18 @@ chomp $inputfile;
 open (my $fh, '<', $inputfile) or die "\nCould not open file '$inputfile' $!\n";
 
 
+$superstring .= "USER:            raymond\n";
+$superstring .= "BUILD:           6.1\n";
+$superstring .= "DESCRIPTION:     msini, semi-major update\n";
+$superstring .= "FILETYPE:        edm\n";
+$superstring .= "FILENAME:        HD_81688.planet\n";
+$superstring .= "DATE:            2014-06-10 09:52:41\n";
+$superstring .= "#\n";
+$superstring .= "# Addition of planet parameter values\n";
+$superstring .= "#\n";
+
+
+$superstring .= "EDMT|planet";
 while ( my $line = <$fh> ) {
 #Step 1 of 4: Split the line on the pipe character.
 	($parameter, $value) = split ('\|', $line);
