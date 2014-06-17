@@ -75,6 +75,7 @@ while ( my $line = <$fh> ) {
 }
 # Close file when done 
 print "\n";
+$superstring .= "|";
 close $fh;
 
 
