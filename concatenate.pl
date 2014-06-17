@@ -59,14 +59,6 @@ while ( my $line = <$fh> ) {
                   $superstring .= "$value";
                   $count = $count + 1;
                }
-	             # $superstring .= "|";
-               # $superstring .= "$parameter";
-               # if ( $parameter !~ /^objectid$/ )
-               # {
-               #   $superstring .= "$parameter";
-               # } 
-	             # $superstring .= "$value";
-      	       # $count = $count + 1;
       	    }
         }
     }
