@@ -48,16 +48,21 @@ while ( my $line = <$fh> ) {
         {
       	    if ( $parameter !~ /def$/)
       	    {
-	             print "|", $parameter, $value;
-               if ( $parameter !~ /^plnletter$/ )
-               {
-                  $superstring .= "|";
-                     if ( $parameter !~ /^objectid$/ )
-                     {
-                        $superstring .= "$parameter";
-                     }
-                  $superstring .= "$value";
-                  $count = $count + 1;
+	            print "|", $parameter, $value;
+              if ( $count == 1 )
+              {
+                $superstring .= "|add";
+                $count = $count + 1;
+              }
+              if ( $parameter !~ /^plnletter$/ )
+              {
+                $superstring .= "|";
+                if ( $parameter !~ /^objectid$/ )
+                {
+                  $superstring .= "$parameter";
+                }
+                $superstring .= "$value";
+                $count = $count + 1;
                }
       	    }
         }
