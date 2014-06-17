@@ -66,7 +66,14 @@ while ( my $line = <$fh> ) {
                 {
                   $superstring .= "$parameter";
                 }
-                $superstring .= "$value";
+                if ( $value eq "" )
+                {
+                   $superstring .= " null";
+                }
+                else
+                {
+                   $superstring .= "$value";
+                }
                 $count = $count + 1;
                }
       	    }
