@@ -27,7 +27,7 @@ $superstring .= "USER:            raymond\n";
 $superstring .= "BUILD:           6.1\n";
 $superstring .= "DESCRIPTION:     Stellar/Planetary Parameters Additions and Updates\n";
 $superstring .= "FILETYPE:        edm\n";
-$superstring .= "FILENAME:        HD_81688.planet\n";
+$superstring .= "FILENAME:        $inputfile\n";
 $superstring .= "DATE:            2014-06-10 09:52:41\n";
 $superstring .= "#\n";
 $superstring .= "# Addition of planet parameter values\n";
@@ -48,11 +48,25 @@ while ( my $line = <$fh> ) {
         {
       	    if ( $parameter !~ /def$/)
       	    {
-	            print "|", $parameter, $value;
-	            $superstring .= "|";
-	            $superstring .= "$parameter";
-	            $superstring .= "$value";
-      	        $count = $count + 1;
+	             print "|", $parameter, $value;
+               if ( $parameter !~ /^plnletter$/ )
+               {
+                  $superstring .= "|";
+                     if ( $parameter !~ /^objectid$/ )
+                     {
+                        $superstring .= "$parameter";
+                     }
+                  $superstring .= "$value";
+                  $count = $count + 1;
+               }
+	             # $superstring .= "|";
+               # $superstring .= "$parameter";
+               # if ( $parameter !~ /^objectid$/ )
+               # {
+               #   $superstring .= "$parameter";
+               # } 
+	             # $superstring .= "$value";
+      	       # $count = $count + 1;
       	    }
         }
     }
