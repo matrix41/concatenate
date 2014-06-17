@@ -54,7 +54,12 @@ while ( my $line = <$fh> ) {
                 $superstring .= "|add";
                 $count = $count + 1;
               }
-              if ( $parameter !~ /^plnletter$/ )
+# In the IF-block below, use && instead of ||.  Using || will just 
+# short-circuit the algorithm because the first statement match will 
+# evaluate to true and the remaining statements will not be evaluated. 
+              if ( ( $parameter !~ /^plnletter$/ ) && 
+                   ( $parameter !~ /^rowupdate$/ ) && 
+                   ( $parameter !~ /^cntr$/ ) )
               {
                 $superstring .= "|";
                 if ( $parameter !~ /^objectid$/ )
